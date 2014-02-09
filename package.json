@@ -1,0 +1,25 @@
+{
+  "name": "training1",
+  "version": "0.0.0",
+  "description": "Training",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tamsler/training1.git"
+  },
+  "keywords": [
+    "training"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tamsler/training1/issues"
+  },
+  "homepage": "https://github.com/tamsler/training1",
+  "dependencies": {
+    "restify": "~2.6.1"
+  }
+}
