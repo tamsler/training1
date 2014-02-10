@@ -22,6 +22,15 @@ server.use(restify.gzipResponse());
 server.get('/api/v1/users', api.getUsersV1);
 
 /*
+ * REST GET : Serving WWW Files
+ *
+ * e.g. http://localhost:8080/docs/public/index.html
+ */
+server.get(/\/docs\/public\/?.*/, restify.serveStatic({
+    directory: './app'
+}));
+
+/*
  * REST POST : Create user
  */
 server.post('/api/v1/users', api.postUserV1);

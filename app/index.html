@@ -1,0 +1,25 @@
+<!doctype html>
+
+<html ng-app="training">
+
+<head>
+</head>
+
+<body ng-controller="MainCtrl">
+
+<div>
+    <button type="submit" ng-click="getUsers()">Get Users</button>
+</div>
+
+<div ng-repeat="user in users">
+    <span>{{user.firstName}}</span>
+    <span>{{user.lastName}}</span>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
+<script src="/docs/public/js/app.js"></script>
+<script src="/docs/public/js/controllers/main-controller.js"></script>
+<script src="/docs/public/js/services/user-service.js"></script>
+
+</body>
+</html>
