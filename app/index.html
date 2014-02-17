@@ -12,9 +12,17 @@
 </div>
 
 <div ng-repeat="user in users">
-    <span>{{user.firstName}}</span>
-    <span>{{user.lastName}}</span>
+    <sapn ng-bind="user.userId"></sapn>
+    <span ng-bind="user.firstName"></span>
+    <span ng-bind="user.lastName"></span>
+    <span></span>
 </div>
+
+<br/>
+
+<input type="text" placeholder="First Name" ng-model="newUser.firstName">
+<input type="text" placeholder="Last Name" ng-model="newUser.lastName">
+<input type="submit" value="Create User" ng-click="createUser()">
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
 <script src="/docs/public/js/app.js"></script>

@@ -1,5 +1,6 @@
 
 var restify = require('restify');
+var mongo = require('./lib/mongo');
 var api = require('./lib/api');
 
 
@@ -36,7 +37,16 @@ server.get(/\/docs\/public\/?.*/, restify.serveStatic({
 server.post('/api/v1/users', api.postUserV1);
 
 
-server.listen(8080, function() {
+/*
+ * Start MongoDB and Node.js server
+ */
+mongo.init(function() {
 
-    console.log('%s listening at %s', server.name, server.url);
+    console.log("INFO: MongoDB is ready");
+
+    server.listen(8080, function() {
+
+        console.log('%s listening at %s', server.name, server.url);
+    });
 });
+
