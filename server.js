@@ -42,9 +42,14 @@ server.post('/api/v1/users', api.postUserV1);
 server.put('/api/v1/users', api.putUserV1);
 
 /*
- * REST DELETE : Delete user
+ * REST DELETE : Delete user by userId or MondoDb objectId (_id)
+ *
+ * @request query parameter userId
+ * @request query parameter objectId
+ *
  */
-server.del('/api/v1/users/:userId', api.deleteUserV1);
+server.del('/api/v1/users', api.deleteUserV1);
+
 
 /*
  * Start MongoDB and Node.js server
