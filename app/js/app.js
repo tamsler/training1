@@ -6,7 +6,7 @@
     /*
      * Creating training module
      */
-    angular.module('training', ['training.controllers', 'training.services']);
+    angular.module('training', ['training.controllers', 'training.services','training.directives']);
 
     /*
      * Create training controllers module
@@ -17,5 +17,10 @@
      * Create training services module
      */
     angular.module('training.services', []);
+
+    /*
+     * Create training directives
+     */
+    angular.module('training.directives', []);
 
 }());

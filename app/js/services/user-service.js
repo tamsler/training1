@@ -51,6 +51,47 @@
                 });
         }
 
+        // API saveUser
+        UserService.saveUser = function(user, callback) {
+
+            console.log("DEBUG: saveUser called : user : ", user);
+            $http(
+                {
+                    "method" : "PUT",
+                    "url" : "/api/v1/users",
+                    "data" : user
+                })
+                .success(function(data, status, headers, config) {
+
+                    callback(false, status);
+                })
+                .error(function(data, status, headers, config) {
+
+                    callback(true, status);
+                });
+        }
+
+        // API Delete User
+        UserService.deleteUser = function(id, callback) {
+
+            $http(
+                {
+                    "method" : "DELETE",
+                    "url" : "/api/v1/users",
+                    "params" : {
+                        "objectId" : id
+                    }
+                })
+                .success(function(data, status, headers, config) {
+
+                    callback(false, status);
+                })
+                .error(function(data, status, headers, config) {
+
+                    callback(true, status);
+                });
+        };
+
         return UserService;
     }]);
 
