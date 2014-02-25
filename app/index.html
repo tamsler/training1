@@ -12,17 +12,31 @@
 </div>
 
 <div ng-repeat="user in users">
-    <sapn ng-bind="user.userId"></sapn>
+    <span ng-
+    <span ng-bind="user.userId"></sapn>
     <span ng-bind="user.firstName"></span>
     <span ng-bind="user.lastName"></span>
     <span></span>
 </div>
 
 <br/>
+<br/>
 
 <input type="text" placeholder="First Name" ng-model="newUser.firstName">
 <input type="text" placeholder="Last Name" ng-model="newUser.lastName">
 <input type="submit" value="Create User" ng-click="createUser()">
+<br/>
+<br/>
+
+<div>
+    <form novalidate class="simple-form">
+        Name: <input type="text" ng-model="user.name" /><br />
+        <button ng-click="reset()">RESET</button>
+        <button ng-click="update(user)">SAVE</button>
+    </form>
+    <pre>form = {{user | json}}</pre>
+    <pre>master = {{master | json}}</pre>
+</div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.12/angular.min.js"></script>
 <script src="/docs/public/js/app.js"></script>

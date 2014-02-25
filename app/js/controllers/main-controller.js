@@ -35,5 +35,8 @@
                 $scope.users = users;
             });
         };
+        $scope.delUser = function() {
+            console.log("DEBUG: MainCtrl:getUsers:users[$index}._id: ", $scope.users[$index].__id);
+        };
     }]);
 }());
