@@ -6,7 +6,20 @@
     /*
      * Creating training module
      */
-    angular.module('training', ['training.controllers', 'training.services','training.directives']);
+    angular.module('training', ['training.controllers', 'training.services','training.directives','ngRoute'])
+        /*
+         * Set up some routes.
+         */
+        .config(function($routeProvider) {
+            $routeProvider
+                .when('/', {
+                    controller:'MainCtrl',
+                    templateUrl:'partials/main-partial.html'
+                })
+                .otherwise({
+                    redirectTo:'/'
+                });
+        });
 
     /*
      * Create training controllers module
