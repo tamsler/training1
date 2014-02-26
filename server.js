@@ -28,7 +28,8 @@ server.get('/api/v1/users', api.getUsersV1);
  * e.g. http://localhost:8080/docs/public/index.html
  */
 server.get(/\/docs\/public\/?.*/, restify.serveStatic({
-    directory: './app'
+    directory: './app',
+    default: 'index.html'
 }));
 
 /*
