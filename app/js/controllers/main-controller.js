@@ -3,11 +3,47 @@
     'use strict';
 
     /*
+     * Users Ctrl
+     */
+    angular.module('training.controllers').controller('UsersCtrl', ['$scope', 'training.services.user', function($scope, userService) {
+
+        userService.getUsers(function(err, users) {
+
+            $scope.users = users;
+            userService.saveLocalUsers(users);
+        });
+    }]);
+    /*
+     * User Edit Ctrl
+     */
+    angular.module('training.controllers').controller('UsersEditCtrl', ['$scope', '$routeParams', '$location','training.services.user', function($scope, $routeParams, $location, userService) {
+
+        var userId = $routeParams.userId;
+        $scope.user = userService.getLocalUser(userId);
+
+        $scope.save = function() {
+
+            console.log("DEBUG: Saving user : ", $scope.user);
+
+            userService.saveUser($scope.user, function(err, status) {
+
+                if(err) {
+
+                    console.log("ERROR: save user");
+                }
+                else {
+
+                    console.log("INFO: saved user");
+                    $location.path('/users');
+                }
+            });
+        };
+    }]);
+
+    /*
      * Main Controller
      */
     angular.module('training.controllers').controller('MainCtrl', ['$scope', 'training.services.user', function($scope, userService) {
-
-        $scope.users = [];
 
         $scope.newUser = {
             'userId': '',
@@ -60,23 +96,6 @@
             console.log("DEBUG: index : ", index);
             console.log("DEBUG: user : " , $scope.users[index]);
             $scope.updateUser = $scope.users[index];
-        };
-
-        $scope.save = function() {
-
-            console.log("DEBUG: Saving user : ", $scope.updateUser);
-
-            userService.saveUser($scope.updateUser, function(err, status) {
-
-                if(err) {
-
-                    console.log("ERROR: save user");
-                }
-                else {
-
-                    console.log("INFO: saved user");
-                }
-            });
         };
     }]);
 }());

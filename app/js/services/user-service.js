@@ -10,7 +10,31 @@
      */
     angular.module('training.services').factory('training.services.user', ['$http', function($http) {
 
-        var UserService = { };
+        var UserService = {
+
+            'users' : []
+        };
+
+        UserService.saveLocalUsers = function(users) {
+
+            this.users = users;
+        };
+
+        UserService.getLocalUsers = function() {
+
+            return this.users;
+        };
+
+        UserService.getLocalUser = function(userId) {
+
+            for(var i = 0; i < this.users.length; i++) {
+
+                if(this.users[i]._id === userId) {
+
+                    return this.users[i];
+                }
+            }
+        };
 
         // API : getUsers
         UserService.getUsers = function(callback) {

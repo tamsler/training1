@@ -12,8 +12,8 @@
     angular.module('training').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
         $routeProvider
-            .when('/users', {controller:'MainCtrl', templateUrl:'partials/main-partial.html'})
-            .when('/users/edit', {controller:'MainCtrl', templateUrl:'partials/user-edit.html'})
+            .when('/users', {controller:'UsersCtrl', templateUrl:'partials/user-list.html'})
+            .when('/users/edit/:userId', {controller:'UsersEditCtrl', templateUrl:'partials/user-edit.html'})
             .otherwise({
                 redirectTo:'/'
             });
