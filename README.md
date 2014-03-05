@@ -1,10 +1,13 @@
 training1
 =========
 
-Training repository
+- To install this project locally, cd to directory where you want the source code to live, then:
+ - > git clone git@github.com:tamsler/training1.git
+ - > cd training1
+ - > sudo npm install
+  - start application with:
+    - > node server.js
 
-- Init package.json via "npm init" and answer questions
-
-- Add Restify library via npm
- npm install restify --save
--- NOTE: "--save" adds the dependency to package.json
+- To add a dependency during development:
+ - > npm install <node dependency> --save
+   - NOTE: "--save" adds the dependency to package.json 
