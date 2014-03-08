@@ -73,7 +73,26 @@
 
                     callback(true, status);
                 });
-        }
+        };
+
+        // API loginUser
+        UserService.loginUser = function(user, callback) {
+
+            $http(
+                {
+                    "method" : "POST",
+                    "url" : "/api/v1/users/login",
+                    "data" : user
+                })
+                .success(function(data, status, headers, config) {
+
+                    callback(false, status);
+                })
+                .error(function(data, status, headers, config) {
+
+                    callback(true, status);
+                });
+        };
 
         // API saveUser
         UserService.saveUser = function(user, callback) {
@@ -93,7 +112,7 @@
 
                     callback(true, status);
                 });
-        }
+        };
 
         // API Delete User
         UserService.deleteUser = function(id, callback) {

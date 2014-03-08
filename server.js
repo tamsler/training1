@@ -37,9 +37,15 @@ server.get('/.*', www.serveV1);
 server.post('/api/v1/users', api.postUserV1);
 
 /*
+ * REST POST : Login user
+ */
+server.post('/api/v1/users/login', api.postUserLoginV1);
+
+/*
  * REST PUT : Update user
  */
 server.put('/api/v1/users', api.putUserV1);
+
 
 /*
  * REST DELETE : Delete user by userId or MondoDb objectId (_id)

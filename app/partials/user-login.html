@@ -1,0 +1,18 @@
+<h4>Update User:</h4>
+<form name="myForm">
+
+    <div>
+        <label>Login ID</label>
+        <input type="text" ng-model="user.loginId"></input>
+    </div>
+
+    <div>
+        <label>Password</label>
+        <input type="text" ng-model="user.password">
+    </div>
+
+    <button ng-click="login()" >Create</button>
+
+</form>
+
+<div ng-bind="message"></div>

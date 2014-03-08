@@ -9,8 +9,6 @@
 
         $scope.delete = function(index) {
 
-            console.log("DEBUG: index : ", index);
-            console.log("DEBUG: user : ", $scope.users[index]);
             userService.deleteUser($scope.users[index]._id, function(err, status) {
 
                 if(err) {
@@ -42,8 +40,6 @@
 
         $scope.save = function() {
 
-            console.log("DEBUG: Saving user : ", $scope.user);
-
             userService.saveUser($scope.user, function(err, status) {
 
                 if(err) {
@@ -74,8 +70,6 @@
 
         $scope.create = function() {
 
-            console.log("DEBUG: Saving user : ", $scope.user);
-
             userService.createUser($scope.user, function(err, status) {
 
                 if(err) {
@@ -85,6 +79,41 @@
                 else {
 
                     console.log("INFO: Created User");
+                }
+            });
+        };
+    }]);
+
+    /*
+     * User Create Ctrl
+     */
+    angular.module('training.controllers').controller('UsersLoginCtrl', ['$scope', '$location', 'training.services.user', function($scope, $location,    userService) {
+
+        $scope.user = {
+
+            'loginId' : '',
+            'password' : ''
+        };
+
+        $scope.message = "";
+
+        $scope.login = function() {
+
+            $scope.message = "";
+
+            userService.loginUser($scope.user, function(err, status) {
+
+                if(err) {
+
+                    console.log("ERROR: login user");
+
+                    $scope.message = "Authentication Error";
+                }
+                else {
+
+                    console.log("INFO: Logged In User");
+
+                    $location.path('/users');
                 }
             });
         };
