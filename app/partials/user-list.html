@@ -1,5 +1,6 @@
 
-
+<div>Logged in as: <span ng-bind="getUser()"></span></div>
+<br />
 <div ng-repeat="user in users | orderBy:user.firstName">
     <div ng-include="'/partials/user.html'"></div>
 </div>

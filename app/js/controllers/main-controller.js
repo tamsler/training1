@@ -23,6 +23,12 @@
             });
         };
 
+        $scope.getUser = function() {
+
+            var user = userService.getUser();
+            return user.firstName + " " + user.lastName;
+        };
+
         userService.getUsers(function(err, users) {
 
             $scope.users = users;

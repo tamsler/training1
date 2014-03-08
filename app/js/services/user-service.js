@@ -12,7 +12,8 @@
 
         var UserService = {
 
-            'users' : []
+            'users' : [],
+            'user' : {}
         };
 
         UserService.saveLocalUsers = function(users) {
@@ -86,6 +87,7 @@
                 })
                 .success(function(data, status, headers, config) {
 
+                    UserService.user = data;
                     callback(false, status);
                 })
                 .error(function(data, status, headers, config) {
@@ -133,6 +135,12 @@
 
                     callback(true, status);
                 });
+        };
+
+        // API Get Authenticated User
+        UserService.getUser = function() {
+
+            return this.user;
         };
 
         return UserService;
