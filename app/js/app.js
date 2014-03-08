@@ -9,16 +9,13 @@
 
     angular.module('training', ['ngRoute', 'training.controllers', 'training.services','training.directives']);
 
-    angular.module('training').config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    angular.module('training').config(['$routeProvider', function($routeProvider) {
 
         $routeProvider
             .when('/users', {controller:'UsersCtrl', templateUrl:'partials/user-list.html'})
+            .when('/users/create', {controller:'UsersCreateCtrl', templateUrl:'partials/user-create.html'} )
             .when('/users/edit/:userId', {controller:'UsersEditCtrl', templateUrl:'partials/user-edit.html'})
-            .otherwise({
-                redirectTo:'/'
-            });
-
-        //$locationProvider.html5Mode(true).hashPrefix('!');
+            .otherwise({redirectTo:'/'});
     }]);
 
     /*

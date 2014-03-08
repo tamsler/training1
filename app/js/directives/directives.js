@@ -10,7 +10,7 @@
         console.log("DEBUG: trainingHelloWorldDirective");
         return {
 
-            templateUrl: "/docs/public/partials/hello.html",
+            templateUrl: "/partials/hello.html",
             restrict: "E"
         };
     });

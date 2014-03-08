@@ -2,7 +2,7 @@
 var restify = require('restify');
 var mongo = require('./lib/mongo');
 var api = require('./lib/api');
-
+var www = require('./lib/www');
 
 var server = restify.createServer();
 
@@ -10,7 +10,7 @@ server.use(restify.acceptParser(server.acceptable));
 server.use(restify.authorizationParser());
 server.use(restify.queryParser({ mapParams: false }));
 server.use(restify.jsonBodyParser({ mapParams: false }));
-server.use(restify.gzipResponse());
+//server.use(restify.gzipResponse());
 
 
 /*
@@ -24,13 +24,12 @@ server.get('/api/v1/users', api.getUsersV1);
 
 /*
  * REST GET : Serving WWW Files
+ * NOTE: Must be last server.get(...) declaration
  *
  * e.g. http://localhost:8080/docs/public/index.html
  */
-server.get(/\/docs\/public\/?.*/, restify.serveStatic({
-    directory: './app',
-    default: 'index.html'
-}));
+
+server.get('/.*', www.serveV1);
 
 /*
  * REST POST : Create user
