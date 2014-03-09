@@ -26,6 +26,16 @@
             return this.users;
         };
 
+        UserService.getUser = function() {
+
+            return this.user;
+        };
+
+        UserService.init = function() {
+
+            UserService.user = angular.fromJson(localStorage.getItem("user"));
+        };
+
         UserService.getLocalUser = function(userId) {
 
             for(var i = 0; i < this.users.length; i++) {
@@ -40,22 +50,33 @@
         // API : getUsers
         UserService.getUsers = function(callback) {
 
-            $http(
-                {
-                    "method" : "GET",
-                    "url" : "/api/v1/users",
-                    "cache" : false
+            if(this.user.authToken) {
 
-                })
-                .success(function(data, status, headers, config) {
+                $http(
+                    {
+                        "method" : "GET",
+                        "url" : "/api/v1/users",
+                        "headers" : {
+                            "Authorization" : "Session " + this.user.authToken
+                        },
+                        "cache" : false
 
-                    callback(null, data);
-                })
-                .error(function(data, status, headers, config) {
+                    })
+                    .success(function(data, status, headers, config) {
 
-                    callback(true, null);
-                });
+                        callback(null, data);
+                    })
+                    .error(function(data, status, headers, config) {
+
+                        callback(true, null);
+                    });
+            }
+            else {
+
+                console.log("ERROR: User is not authenticated");
+            }
         };
+
 
         // API createUser
         UserService.createUser = function(newUser, callback) {
@@ -88,6 +109,7 @@
                 .success(function(data, status, headers, config) {
 
                     UserService.user = data;
+                    localStorage.setItem("user", angular.toJson(data));
                     callback(false, status);
                 })
                 .error(function(data, status, headers, config) {
@@ -135,12 +157,6 @@
 
                     callback(true, status);
                 });
-        };
-
-        // API Get Authenticated User
-        UserService.getUser = function() {
-
-            return this.user;
         };
 
         return UserService;

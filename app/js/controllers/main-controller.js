@@ -130,5 +130,7 @@
      */
     angular.module('training.controllers').controller('MainCtrl', ['$scope', 'training.services.user', function($scope, userService) {
 
+        userService.init();
+
     }]);
 }());

@@ -2,6 +2,7 @@
 var restify = require('restify');
 var mongo = require('./lib/mongo');
 var api = require('./lib/api');
+var middleware = require('./lib/middleware');
 var www = require('./lib/www');
 
 var server = restify.createServer();
@@ -20,7 +21,7 @@ server.use(restify.jsonBodyParser({ mapParams: false }));
 /*
  * REST GET : Get users
  */
-server.get('/api/v1/users', api.getUsersV1);
+server.get('/api/v1/users', middleware.validateAuthN, api.getUsersV1);
 
 /*
  * REST GET : Serving WWW Files
