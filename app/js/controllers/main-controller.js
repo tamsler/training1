@@ -5,7 +5,7 @@
     /*
      * Users Ctrl
      */
-    angular.module('training.controllers').controller('UsersCtrl', ['$scope', 'training.services.user', function($scope, userService) {
+    angular.module('training.controllers').controller('UsersCtrl', ['$scope', '$location', 'training.services.user', function($scope, $location, userService) {
 
         $scope.delete = function(index) {
 
@@ -26,14 +26,26 @@
         $scope.getUser = function() {
 
             var user = userService.getUser();
-            return user.firstName + " " + user.lastName;
+            if(user) {
+
+                return user.firstName + " " + user.lastName;
+            }
         };
 
-        userService.getUsers(function(err, users) {
+        var user = userService.getUser();
 
-            $scope.users = users;
-            userService.saveLocalUsers(users);
-        });
+        if(user && user.authToken) {
+
+            userService.getUsers(function(err, users) {
+
+                $scope.users = users;
+                userService.saveLocalUsers(users);
+            });
+        }
+        else {
+
+            $location.path('/users/login');
+        }
     }]);
 
     /*

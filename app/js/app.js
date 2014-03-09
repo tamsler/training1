@@ -16,7 +16,7 @@
             .when('/users/create', {controller:'UsersCreateCtrl', templateUrl:'partials/user-create.html'} )
             .when('/users/edit/:userId', {controller:'UsersEditCtrl', templateUrl:'partials/user-edit.html'})
             .when('/users/login', {controller:'UsersLoginCtrl', templateUrl:'partials/user-login.html'})
-            .otherwise({redirectTo:'/'});
+            .otherwise({redirectTo:'/users'});
     }]);
 
     /*
