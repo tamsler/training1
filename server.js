@@ -21,7 +21,7 @@ server.use(restify.jsonBodyParser({ mapParams: false }));
 /*
  * REST GET : Get users
  */
-server.get('/api/v1/users', middleware.validateAuthN, api.getUsersV1);
+server.get('/api/v1/users', middleware.validateAuthN, middleware.validateAuthZ, api.getUsersV1);
 
 /*
  * REST GET : Serving WWW Files
@@ -55,7 +55,7 @@ server.put('/api/v1/users', api.putUserV1);
  * @request query parameter objectId
  *
  */
-server.del('/api/v1/users', api.deleteUserV1);
+server.del('/api/v1/users/:id', api.deleteUserV1);
 
 
 /*

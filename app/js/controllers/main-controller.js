@@ -9,7 +9,7 @@
 
         $scope.delete = function(index) {
 
-            userService.deleteUser($scope.users[index]._id, function(err, status) {
+            userService.deleteUser($scope.users[index].loginId, "loginId", function(err, status) {
 
                 if(err) {
 
@@ -83,7 +83,8 @@
             'loginId' : '',
             'firstName' : '',
             'lastName' : '',
-            'password' : ''
+            'password' : '',
+            'userRole' : ''// 'admin', 'manager', 'user', ...
         };
 
         $scope.create = function() {

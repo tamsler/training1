@@ -109,6 +109,7 @@
                 .success(function(data, status, headers, config) {
 
                     UserService.user = data;
+                    console.log("DEBUG: UserService.loginUser : user : ", UserService.user);
                     localStorage.setItem("user", angular.toJson(data));
                     callback(false, status);
                 })
@@ -138,15 +139,20 @@
                 });
         };
 
-        // API Delete User
-        UserService.deleteUser = function(id, callback) {
+        /*
+         * API Delete User
+         *
+         * NOTE: idType is either:
+         * "loginId" or "objectId"
+         */
+        UserService.deleteUser = function(id, idType, callback) {
 
             $http(
                 {
                     "method" : "DELETE",
-                    "url" : "/api/v1/users",
+                    "url" : "/api/v1/users/" + id,
                     "params" : {
-                        "objectId" : id
+                        "idType" : idType
                     }
                 })
                 .success(function(data, status, headers, config) {
