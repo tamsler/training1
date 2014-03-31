@@ -1,5 +1,5 @@
 <sapn ng-bind="user.userId"></sapn>
 <span ng-bind="user.firstName"></span>
 <span ng-bind="user.lastName"></span>
-<input type="button" value="Delete" ng-click="delete($index)">
+<button type="button" class="btn btn-link" ng-click="delete($index)">Delete</button>
 <a href="#/users/edit/{{user._id}}">Edit</i></a>

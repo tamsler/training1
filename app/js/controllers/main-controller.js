@@ -5,7 +5,14 @@
     /*
      * Users Ctrl
      */
-    angular.module('training.controllers').controller('UsersCtrl', ['$scope', '$location', 'training.services.user', function($scope, $location, userService) {
+    angular.module('training.controllers').controller('UsersCtrl', ['$scope', '$sce', '$location', 'training.services.user', function($scope, $sce, $location, userService) {
+
+        $scope.selectedIcon = "";
+        $scope.icons = [
+            {"value":"Gear","label":$sce.trustAsHtml("<i class=\"fa fa-gear\"></i> Gear")},
+            {"value":"Globe","label":$sce.trustAsHtml("<i class=\"fa fa-globe\"></i> Globe")},
+            {"value":"Heart","label":$sce.trustAsHtml("<i class=\"fa fa-heart\"></i> Heart")},
+            {"value":"Camera","label":$sce.trustAsHtml("<i class=\"fa fa-camera\"></i> Camera")}];
 
         $scope.delete = function(index) {
 
@@ -55,6 +62,11 @@
 
         var userId = $routeParams.userId;
         $scope.user = userService.getLocalUser(userId);
+
+        if(!$scope.user) {
+
+            $location.path('/users');
+        }
 
         $scope.save = function() {
 

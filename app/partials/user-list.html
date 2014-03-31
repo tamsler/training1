@@ -1,6 +1,20 @@
 
+
 <div>Logged in as: <span ng-bind="getUser()"></span></div>
-<br />
+
+<br/>
+<br/>
+
+<label>Single select:&nbsp;</label>
+<button type="button" class="btn btn-default" ng-model="selectedIcon" data-html="1" ng-options="icon.value as icon.label for icon in icons" bs-select>
+    Action <span class="caret"></span>
+</button>
+
+<br/>
+<br/>
+        Selection:&nbsp;&nbsp;<span ng-bind="selectedIcon"></span>
+<br/>
+<br/>
 <div ng-repeat="user in users | orderBy:user.firstName">
     <div ng-include="'/partials/user.html'"></div>
 </div>

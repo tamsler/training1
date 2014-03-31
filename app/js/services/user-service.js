@@ -13,7 +13,19 @@
         var UserService = {
 
             'users' : [],
-            'user' : {}
+            'user' : {},
+            'roles' : {
+                'admin' : {
+                    'create' : true,
+                    'delete' : true,
+                    'read' : true
+                },
+                'user': {
+                    'create' : false,
+                    'delete' : false,
+                    'read' : true
+                }
+            }
         };
 
         UserService.saveLocalUsers = function(users) {
@@ -64,6 +76,7 @@
                     })
                     .success(function(data, status, headers, config) {
 
+                        localStorage.setItem("users", angular.toJson(data));
                         callback(null, data);
                     })
                     .error(function(data, status, headers, config) {
@@ -78,7 +91,7 @@
         };
 
 
-        // API createUser
+        // API createuser
         UserService.createUser = function(newUser, callback) {
 
             $http(

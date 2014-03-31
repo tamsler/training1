@@ -7,7 +7,16 @@
      * Creating training module
      */
 
-    angular.module('training', ['ngRoute', 'training.controllers', 'training.services','training.directives']);
+    angular.module('training', [
+        'ngRoute',
+        'ngAnimate',
+        'mgcrea.ngStrap',
+        'mgcrea.ngStrap.select',
+        'mgcrea.ngStrap.tooltip',
+        'training.controllers',
+        'training.services',
+        'training.directives'
+        ]);
 
     angular.module('training').config(['$routeProvider', function($routeProvider) {
 
